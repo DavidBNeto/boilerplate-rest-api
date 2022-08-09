@@ -1,16 +1,35 @@
 package com.davidbneto.boilerplaterestapi.domain.data.model.meal;
 
+import com.davidbneto.boilerplaterestapi.domain.data.annotations.Default;
 import com.davidbneto.boilerplaterestapi.domain.data.model.ModelBusiness;
-import com.davidbneto.boilerplaterestapi.domain.data.model.dish.Dish;
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.TreeSet;
+import java.util.UUID;
+import org.springframework.lang.Nullable;
 
 public class Meal extends ModelBusiness {
 
   private String uuid;
   private String occasion;
-  private TreeSet<Dish> dishes;
+  @Nullable
+  private Set<String> dishes;
   private LocalDateTime time;
+
+  @Default
+  public Meal(final String occasion, final LocalDateTime time) {
+    this.dishes = new TreeSet<>();
+    this.occasion = occasion;
+    this.time = time;
+    this.uuid = UUID.nameUUIDFromBytes(
+        new StringBuilder()
+            .append(occasion)
+            .append(time)
+            .append(System.currentTimeMillis())
+            .toString()
+            .getBytes()
+    ).toString();
+  }
 
   public String getUuid() {
     return uuid;
@@ -20,7 +39,7 @@ public class Meal extends ModelBusiness {
     return occasion;
   }
 
-  public TreeSet<Dish> getDishes() {
+  public Set<String> getDishes() {
     return dishes;
   }
 
@@ -28,19 +47,19 @@ public class Meal extends ModelBusiness {
     return time;
   }
 
-  public void setUuid(String uuid) {
+  public void setUuid(final String uuid) {
     this.uuid = uuid;
   }
 
-  public void setOccasion(String occasion) {
+  public void setOccasion(final String occasion) {
     this.occasion = occasion;
   }
 
-  public void setDishes(TreeSet<Dish> dishes) {
+  public void setDishes(final Set<String> dishes) {
     this.dishes = dishes;
   }
 
-  public void setTime(LocalDateTime time) {
+  public void setTime(final LocalDateTime time) {
     this.time = time;
   }
 }

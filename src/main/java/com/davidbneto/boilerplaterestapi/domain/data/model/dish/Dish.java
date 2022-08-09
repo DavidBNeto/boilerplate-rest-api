@@ -17,6 +17,14 @@ public class Dish extends ModelBusiness implements Comparable<Dish> {
         return ingredients;
     }
 
+    public void setCategory(DishCategory category) {
+        this.category = category;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     @Override
     public int compareTo(Dish dish) {
         return this.category.getOrder() - dish.getCategory().getOrder();

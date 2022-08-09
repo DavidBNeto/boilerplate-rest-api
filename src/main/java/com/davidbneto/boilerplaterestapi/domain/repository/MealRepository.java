@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface MealRepository {
 
   List<Meal> getAll();
-
   Optional<Meal> getByUuid(String uuid);
-
+  Optional<Meal> save(Meal meal);
+  Optional<Meal> update(String uuid, Meal meal);
 }
