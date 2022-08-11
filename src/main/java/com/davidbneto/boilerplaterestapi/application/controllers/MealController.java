@@ -33,7 +33,7 @@ public class MealController implements MealApi{
   }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<List<Meal>> getAll(@PathVariable final String uuid) {
+  public ResponseEntity<List<Meal>> getAll() {
     return ResponseEntity.ok(mealService.getAll());
   }
 
